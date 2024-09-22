@@ -34,7 +34,10 @@ func main() {
 			timePing = 1
 		}
 		for {
-			sites := curler.GetCodes(strings.Split(os.Getenv("SITES"), ","))
+			sites, err := curler.GetCodes(strings.Split(os.Getenv("SITES"), ","))
+			if err != nil {
+				logger.Error.Fatalln("Error getting code for sites")
+			}
 			for site, code := range sites {
 				if code != 200 {
 					text := fmt.Sprintf("🔴 %s has code: %d", site, code)

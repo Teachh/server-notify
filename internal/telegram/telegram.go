@@ -22,8 +22,8 @@ func generateUrl() string {
 func SendMessage(text string) {
 	chat_id := os.Getenv("TELEGRAM_CHAT_ID")
 	if chat_id == "" {
-		logger.Error.Fatalln("Add TELEGRAM_CHAT_ID in .env")
-
+		logger.Error.Println("Add TELEGRAM_CHAT_ID in .env")
+		return
 	}
 	url := fmt.Sprintf("%s/sendMessage", generateUrl())
 	body, _ := json.Marshal(map[string]string{
